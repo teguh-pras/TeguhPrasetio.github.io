@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="id" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teguh Prasetio, S.T. | Engineering Portfolio</title>
+  <meta name="description" content="Portofolio Teknik Teguh Prasetio, S.T. - Sarjana Teknik Elektro, Bersertifikat ESDM RI, Juara 1 Robotik Nasional 2025.">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* CSS Reset & Bulletproof Constraints (Mencegah SVG/Gambar melebar raksasa jika CDN lambat) */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    svg {
+      display: inline-block;
+      vertical-align: middle;
+      flex-shrink: 0;
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    :root {
+      --bg-main: #0b0f19;
+      --bg-card: rgba(17, 24, 39, 0.8);
+      --border-color: rgba(255, 255, 255, 0.1);
+      --text-main: #f8fafc;
+      --text-sub: #94a3b8;
+      --accent: #38bdf8;
+    }
+
+    html.light {
+      --bg-main: #f8fafc;
+      --bg-card: rgba(255, 255, 255, 0.9);
+      --border-color: rgba(0, 0, 0, 0.1);
+      --text-main: #0f172a;
+      --text-sub: #475569;
+      --accent: #0284c7;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Background Grid */
+    .bg-grid-pattern {
+      background-size: 36px 36px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    }
+    html.light .bg-grid-pattern {
+      background-image: 
+        linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+    }
+
+    /* Glass Effect */
+    .glass-box {
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-color);
+    }
+
+    .text-gradient {
+      background: linear-gradient(135deg, #38bdf8, #34d399);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Glow behind profile */
+    .profile-frame {
+      position: relative;
+    }
+    .profile-frame::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 1.75rem;
+      background: linear-gradient(135deg, #0ea5e9, #10b981, #6366f1);
+      z-index: 0;
+      opacity: 0.75;
+      filter: blur(16px);
+      transition: opacity 0.3s ease;
+    }
+    .profile-frame:hover::before {
+      opacity: 1;
+    }
+
+    /* Card Hover */
+    .hover-lift {
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .hover-lift:hover {
+      transform: translateY(-4px);
+      border-color: rgba(56, 189, 248, 0.4);
+      box-shadow: 0 12px 30px rgba(14, 165, 233, 0.15);
+    }
+
+    /* Filter Active Button */
+    .filter-btn.active {
+      background-color: #0284c7;
+      color: #ffffff;
+      border-color: #0284c7;
+    }
+  </style>
+</head>
+<body class="bg-grid-pattern antialiased">
+
+  <!-- ==================== HEADER & NAVBAR ==================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass-box border-b border-[var(--border-color)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo / Name -->
+      <a href="#hero" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-emerald-400 flex items-center justify-center text-white font-extrabold text-base shadow-md group-hover:scale-105 transition-transform">
+          TP
+        </div>
+        <div>
+          <span class="font-extrabold tracking-tight text-base sm:text-lg block text-[var(--text-main)]">Teguh Prasetio, S.T.</span>
+          <span class="text-xs font-mono text-sky-400 block -mt-1">Electrical & Automation Engineer</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-semibold">
+        <a href="#about" class="text-[var(--text-sub)] hover:text-sky-400 transition-colors">Tentang</a>
+        <a href="#competencies" class="text-[var(--text-sub)] hover:text-sky-400 transition-colors">Kompetensi</a>
+        <a href="#projects" class="text-[var(--text-sub)] hover:text-sky-400 transition-colors">Proyek</a>
+        <a href="#experience" class="text-[var(--text-sub)] hover:text-sky-400 transition-colors">Pengalaman</a>
+        <a href="#honors" class="text-[var(--text-sub)] hover:text-sky-400 transition-colors">Prestasi</a>
+        <a href="#contact" class="text-[var(--text-sub)] hover:text-sky-400 transition-colors">Kontak</a>
+      </nav>
+
+      <!-- Action & Theme Toggle -->
+      <div class="flex items-center gap-3">
+        
+        <!-- Theme Toggle Button -->
+        <button id="theme-btn" aria-label="Toggle Dark/Light Mode" class="w-10 h-10 rounded-xl glass-box flex items-center justify-center text-[var(--text-sub)] hover:text-[var(--text-main)] transition-colors">
+          <!-- Sun Icon (Dark Mode Active) -->
+          <svg id="sun-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+          <!-- Moon Icon (Light Mode Active) -->
+          <svg id="moon-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+        </button>
+
+        <a href="https://wa.me/62895609817832" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-semibold text-xs tracking-wider uppercase shadow-md transition-all">
+          <span>Hubungi Saya</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-btn" aria-label="Open Navigation Menu" class="md:hidden w-10 h-10 rounded-xl glass-box flex items-center justify-center text-[var(--text-sub)]">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Menu Dropdown -->
+    <div id="mobile-nav" class="hidden md:hidden glass-box border-t border-[var(--border-color)] px-6 py-4 space-y-3">
+      <a href="#about" class="block py-2 text-[var(--text-sub)] hover:text-sky-400 font-medium">Tentang</a>
+      <a href="#competencies" class="block py-2 text-[var(--text-sub)] hover:text-sky-400 font-medium">Kompetensi</a>
+      <a href="#projects" class="block py-2 text-[var(--text-sub)] hover:text-sky-400 font-medium">Proyek</a>
+      <a href="#experience" class="block py-2 text-[var(--text-sub)] hover:text-sky-400 font-medium">Pengalaman</a>
+      <a href="#honors" class="block py-2 text-[var(--text-sub)] hover:text-sky-400 font-medium">Prestasi</a>
+      <a href="#contact" class="block py-2 text-sky-400 font-bold">Kontak</a>
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section id="hero" class="pt-32 pb-20 md:pt-40 md:pb-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left: Copy & Value Proposition -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              Siap Bekerja & Relokasi Segera
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/10 text-sky-400 border border-sky-500/30">
+              Tersertifikasi ESDM RI Tegangan Rendah
+            </span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+            Halo, Saya <br class="hidden sm:block">
+            <span class="text-gradient">Teguh Prasetio, S.T.</span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-[var(--text-sub)] max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            Lulusan Sarjana Teknik Elektro Universitas Bengkulu (<strong class="text-[var(--text-main)]">IPK 3.36 / 4.00</strong>) & <strong>Juara 1 Kontes Robot Industri Nasional 2025</strong>. Berpengalaman di bidang <span class="text-sky-400 font-semibold">Otomasi Industri & PLC</span>, <span class="text-emerald-400 font-semibold">Production Engineering / Kaizen</span>, dan <span class="text-indigo-400 font-semibold">Pemeliharaan Peralatan Pabrik (M&E)</span>.
+          </p>
+
+          <!-- 3 Highlight Metric Cards -->
+          <div class="grid grid-cols-3 gap-3 pt-2 max-w-lg mx-auto lg:mx-0">
+            <div class="glass-box p-3.5 rounded-xl text-center">
+              <span class="block text-xl sm:text-2xl font-extrabold text-sky-400 font-mono">Juara 1</span>
+              <span class="text-[11px] sm:text-xs text-[var(--text-sub)] font-medium">Robotik Nasional '25</span>
+            </div>
+            <div class="glass-box p-3.5 rounded-xl text-center">
+              <span class="block text-xl sm:text-2xl font-extrabold text-emerald-400 font-mono">35%</span>
+              <span class="text-[11px] sm:text-xs text-[var(--text-sub)] font-medium">Kaizen Downtime Cut</span>
+            </div>
+            <div class="glass-box p-3.5 rounded-xl text-center">
+              <span class="block text-xl sm:text-2xl font-extrabold text-indigo-400 font-mono">100%</span>
+              <span class="text-[11px] sm:text-xs text-[var(--text-sub)] font-medium">Zero Accident K3</span>
+            </div>
+          </div>
+
+          <!-- CTAs -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+            <a href="#projects" class="px-6 py-3.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-sm shadow-lg shadow-sky-600/25 transition-all">
+              Lihat Proyek & Portofolio
+            </a>
+            <a href="https://wa.me/62895609817832" target="_blank" class="px-6 py-3.5 rounded-xl glass-box hover:border-emerald-500/50 text-[var(--text-main)] font-semibold text-sm transition-all flex items-center gap-2">
+              <svg class="w-4 h-4 text-emerald-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.303-.058.116-.087.188-.173.289l-.26.303c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824z"/></svg>
+              Hubungi via WhatsApp
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Right: Profile Picture with Glow Effect -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="profile-frame w-72 sm:w-80 max-w-full">
+            <div class="relative z-10 glass-box p-3 rounded-2xl overflow-hidden shadow-2xl">
+              <img 
+                src="Foto profil.jpeg" 
+                alt="Foto Profil Teguh Prasetio, S.T." 
+                class="w-full h-auto object-cover rounded-xl aspect-[3/4] shadow-inner"
+              >
+              <div class="pt-3 pb-1 text-center">
+                <h3 class="font-extrabold text-base text-[var(--text-main)]">Teguh Prasetio, S.T.</h3>
+                <p class="text-xs text-[var(--text-sub)] font-mono">Bengkulu City, Indonesia</p>
+                <div class="mt-2.5 pt-2 border-t border-[var(--border-color)] flex justify-around text-xs font-semibold">
+                  <span class="text-sky-400">⚡ Electrical</span>
+                  <span class="text-emerald-400">🤖 Otomasi</span>
+                  <span class="text-indigo-400">🏭 Manufaktur</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ABOUT SECTION ==================== -->
+  <section id="about" class="py-20 border-t border-[var(--border-color)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-3">
+        <span class="text-xs font-mono font-bold uppercase tracking-widest text-sky-400">Tentang Saya</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Dedikasi Rekayasa Berbasis Disiplin & Continuous Improvement</h2>
+        <p class="text-sm sm:text-base text-[var(--text-sub)] leading-relaxed">
+          Sebagai Sarjana Teknik Elektro dari Universitas Bengkulu, saya memadukan pemahaman teori yang kuat dengan pengalaman praktis pemecahan masalah lapangan (*troubleshooting*), standarisasi proses (WI/SOP), dan kepatuhan keselamatan kerja (K3/LOTO).
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="glass-box p-6 rounded-2xl space-y-3 hover-lift">
+          <div class="w-12 h-12 rounded-xl bg-sky-500/10 text-sky-400 flex items-center justify-center font-bold text-xl">
+            ⚡
+          </div>
+          <h3 class="text-lg font-bold">Otomasi & Kontrol PLC</h3>
+          <p class="text-sm text-[var(--text-sub)] leading-relaxed">
+            Terbiasa memprogram, mendebug, dan mengintegrasikan PLC Siemens TIA Portal (S7-1200), Schneider Modicon, HMI, SCADA, serta aktuator pneumatik dan robot industri.
+          </p>
+        </div>
+
+        <div class="glass-box p-6 rounded-2xl space-y-3 hover-lift">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold text-xl">
+            📈
+          </div>
+          <h3 class="text-lg font-bold">Production & Lean Kaizen</h3>
+          <p class="text-sm text-[var(--text-sub)] leading-relaxed">
+            Mampu menyusun Work Instructions (WI), analisis PFMEA & Control Plan, pemantauan Cycle Time, serta merancang tata letak perakitan (AutoCAD & SolidWorks).
+          </p>
+        </div>
+
+        <div class="glass-box p-6 rounded-2xl space-y-3 hover-lift">
+          <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center font-bold text-xl">
+            🛡️
+          </div>
+          <h3 class="text-lg font-bold">Sistem Tenaga & K3 Listrik</h3>
+          <p class="text-sm text-[var(--text-sub)] leading-relaxed">
+            Bersertifikasi resmi Kementerian ESDM RI di bidang Pengoperasian & Keselamatan Listrik Tegangan Rendah. Memahami switchgear 20 kV, ETAP, trafo, dan prosedur LOTO.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== COMPETENCIES ==================== -->
+  <section id="competencies" class="py-20 border-t border-[var(--border-color)] bg-slate-900/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <div class="text-center max-w-2xl mx-auto space-y-3">
+        <span class="text-xs font-mono font-bold uppercase tracking-widest text-emerald-400">Matriks Keahlian</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Keahlian & Perangkat Lunak</h2>
+        <p class="text-sm text-[var(--text-sub)]">Instrumen teknis yang dikuasai untuk mendukung keandalan operasional industri.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <div class="glass-box p-6 rounded-2xl space-y-4">
+          <h3 class="text-base font-bold text-sky-400 flex items-center gap-2">
+            <span>💻</span> Desain & Gambar Kerja
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-800 text-slate-300">AutoCAD 2D</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-800 text-slate-300">AutoCAD Electrical</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-800 text-slate-300">SolidWorks 3D</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-800 text-slate-300">Single-Line Diagram</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-800 text-slate-300">KiCad EDA</span>
+          </div>
+        </div>
+
+        <div class="glass-box p-6 rounded-2xl space-y-4">
+          <h3 class="text-base font-bold text-emerald-400 flex items-center gap-2">
+            <span>⚙️</span> Otomasi & PLC
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-800 text-slate-300">Siemens TIA Portal</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-800 text-slate-300">SIMATIC S7-1200</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-800 text-slate-300">Schneider Modicon</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-800 text-slate-300">Ladder Logic & FBD</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-800 text-slate-300">HMI & SCADA</span>
+          </div>
+        </div>
+
+        <div class="glass-box p-6 rounded-2xl space-y-4">
+          <h3 class="text-base font-bold text-indigo-400 flex items-center gap-2">
+            <span>🏭</span> Production & Mutu
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-800 text-slate-300">PFMEA & Control Plan</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-800 text-slate-300">Work Instructions (WI)</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-800 text-slate-300">Cycle & Takt Time</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-800 text-slate-300">Kaizen (Continuous Imp.)</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-800 text-slate-300">ISO 9001 / ISO 14001</span>
+          </div>
+        </div>
+
+        <div class="glass-box p-6 rounded-2xl space-y-4">
+          <h3 class="text-base font-bold text-amber-400 flex items-center gap-2">
+            <span>⚡</span> Tenaga Listrik & Alat Ukur
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-800 text-slate-300">ETAP Simulation</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-800 text-slate-300">Kubikel 20 kV</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-800 text-slate-300">Kalibrasi Sensor 4-20mA</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-800 text-slate-300">LOTO K3</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-800 text-slate-300">Megger & Oscilloscope</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== FEATURED PROJECTS ==================== -->
+  <section id="projects" class="py-20 border-t border-[var(--border-color)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div>
+          <span class="text-xs font-mono font-bold uppercase tracking-widest text-sky-400">Studi Kasus Rekayasa</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-1">Proyek & Pencapaian Unggulan</h2>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="flex flex-wrap gap-2 text-xs font-semibold">
+          <button class="filter-btn active px-3.5 py-1.5 rounded-lg border border-[var(--border-color)] glass-box" onclick="setFilter('all', this)">Semua</button>
+          <button class="filter-btn px-3.5 py-1.5 rounded-lg border border-[var(--border-color)] glass-box" onclick="setFilter('production', this)">Production & Kaizen</button>
+          <button class="filter-btn px-3.5 py-1.5 rounded-lg border border-[var(--border-color)] glass-box" onclick="setFilter('automation', this)">Otomasi & Robotik</button>
+          <button class="filter-btn px-3.5 py-1.5 rounded-lg border border-[var(--border-color)] glass-box" onclick="setFilter('power', this)">Sistem Tenaga</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Project 1: Kaizen -->
+        <div class="project-card glass-box rounded-2xl overflow-hidden hover-lift flex flex-col justify-between" data-cat="production">
+          <div class="p-6 space-y-4">
+            <div class="flex items-center justify-between text-xs">
+              <span class="px-2.5 py-0.5 rounded-full font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Kaizen & Lean</span>
+              <span class="font-mono text-[var(--text-sub)]">Univ Bengkulu</span>
+            </div>
+            <h3 class="text-xl font-bold">Reduksi Downtime Setup 35% & Modularisasi Meja Praktikum</h3>
+            <p class="text-sm text-[var(--text-sub)] leading-relaxed">
+              Merancang ulang terminal koneksi kabel kaku menjadi blok terminal modular quick-swap berkode warna, memangkas waktu setup praktikum dari 45 menit menjadi di bawah 30 menit untuk 100+ mahasiswa.
+            </p>
+            <div class="space-y-1 text-xs text-slate-300 font-mono">
+              <div class="text-emerald-400">✓ Studi Waktu Siklus (Cycle Time)</div>
+              <div class="text-emerald-400">✓ Penyusunan Work Instructions (WI)</div>
+              <div class="text-emerald-400">✓ Penataan 5S Meja Kerja</div>
+            </div>
+          </div>
+          <div class="px-6 py-4 bg-slate-900/40 border-t border-[var(--border-color)] flex items-center justify-between text-xs">
+            <span class="font-bold text-emerald-400 font-mono">Dampak: -35% Waktu Setup</span>
+            <span class="text-[var(--text-sub)]">Production Eng</span>
+          </div>
+        </div>
+
+        <!-- Project 2: SCARA Robotic Recovery -->
+        <div class="project-card glass-box rounded-2xl overflow-hidden hover-lift flex flex-col justify-between" data-cat="automation">
+          <div class="p-6 space-y-4">
+            <div class="flex items-center justify-between text-xs">
+              <span class="px-2.5 py-0.5 rounded-full font-bold bg-sky-500/10 text-sky-400 border border-sky-500/20">🏆 Juara 1 Nasional</span>
+              <span class="font-mono text-[var(--text-sub)]">Padang 2025</span>
+            </div>
+            <h3 class="text-xl font-bold">Troubleshooting Sel Robot SCARA Pick-and-Place</h3>
+            <p class="text-sm text-[var(--text-sub)] leading-relaxed">
+              Mendiagnosis dan memperbaiki suntikan kerusakan sinkronisasi sinyal antara PLC, sensor optik, dan aktuator pneumatik di bawah batas waktu ketat penjurian kompetisi nasional.
+            </p>
+            <div class="space-y-1 text-xs text-slate-300 font-mono">
+              <div class="text-sky-400">✓ Root Cause Failure Analysis (RCFA)</div>
+              <div class="text-sky-400">✓ Eliminasi Sinyal Chattering Sensor</div>
+              <div class="text-sky-400">✓ Poka-Yoke Konfirmasi Tekanan Vakum</div>
+            </div>
+          </div>
+          <div class="px-6 py-4 bg-slate-900/40 border-t border-[var(--border-color)] flex items-center justify-between text-xs">
+            <span class="font-bold text-sky-400 font-mono">Best Debugging Award</span>
+            <span class="text-[var(--text-sub)]">Robotik Industri</span>
+          </div>
+        </div>
+
+        <!-- Project 3: Simulated EV Sub-Assembly PFMEA -->
+        <div class="project-card glass-box rounded-2xl overflow-hidden hover-lift flex flex-col justify-between" data-cat="production">
+          <div class="p-6 space-y-4">
+            <div class="flex items-center justify-between text-xs">
+              <span class="px-2.5 py-0.5 rounded-full font-bold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">Simulasi EV</span>
+              <span class="font-mono text-[var(--text-sub)]">Manufaktur ALVA</span>
+            </div>
+            <h3 class="text-xl font-bold">Analisis Risiko PFMEA & Control Plan Perakitan EV</h3>
+            <p class="text-sm text-[var(--text-sub)] leading-relaxed">
+              Menyusun pemetaan potensi kegagalan (PFMEA) dan kontrol kualitas (Control Plan) pada proses pengencangan terminal kabel daya baterai motor listrik guna mencegah bahaya panas berlebih.
+            </p>
+            <div class="space-y-1 text-xs text-slate-300 font-mono">
+              <div class="text-indigo-400">✓ Standar AIAG-VDA PFMEA (RPN)</div>
+              <div class="text-indigo-400">✓ Poka-Yoke Kunci Torsi Nirkabel</div>
+              <div class="text-indigo-400">✓ Kesiapan Audit ISO 9001/14001</div>
+            </div>
+          </div>
+          <div class="px-6 py-4 bg-slate-900/40 border-t border-[var(--border-color)] flex items-center justify-between text-xs">
+            <span class="font-bold text-indigo-400 font-mono">Mitigasi Risiko Mutu</span>
+            <span class="text-[var(--text-sub)]">Production Eng</span>
+          </div>
+        </div>
+
+        <!-- Project 4: Hydro Power Plant Monitoring -->
+        <div class="project-card glass-box rounded-2xl overflow-hidden hover-lift flex flex-col justify-between" data-cat="power">
+          <div class="p-6 space-y-4">
+            <div class="flex items-center justify-between text-xs">
+              <span class="px-2.5 py-0.5 rounded-full font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20">Pembangkit Listrik</span>
+              <span class="font-mono text-[var(--text-sub)]">PT Manna Energy</span>
+            </div>
+            <h3 class="text-xl font-bold">Pemantauan Generator Sinkron & Kalibrasi Sensor Presisi</h3>
+            <p class="text-sm text-[var(--text-sub)] leading-relaxed">
+              Memantau parameter generator sinkron, sistem eksitasi statis, dan memverifikasi kalibrasi sensor posisi magnetostriktif pada hydraulic governor pengatur sudu turbin air.
+            </p>
+            <div class="space-y-1 text-xs text-slate-300 font-mono">
+              <div class="text-amber-400">✓ Inspeksi Kubikel 20 kV & Trafo</div>
+              <div class="text-amber-400">✓ Prosedur Isolasi Energi (LOTO)</div>
+              <div class="text-amber-400">✓ Analisis Getaran & Suhu Bearing</div>
+            </div>
+          </div>
+          <div class="px-6 py-4 bg-slate-900/40 border-t border-[var(--border-color)] flex items-center justify-between text-xs">
+            <span class="font-bold text-amber-400 font-mono">Energi Terbarukan</span>
+            <span class="text-[var(--text-sub)]">Operasi & PM</span>
+          </div>
+        </div>
+
+        <!-- Project 5: Power Systems Analysis with ETAP -->
+        <div class="project-card glass-box rounded-2xl overflow-hidden hover-lift flex flex-col justify-between" data-cat="power">
+          <div class="p-6 space-y-4">
+            <div class="flex items-center justify-between text-xs">
+              <span class="px-2.5 py-0.5 rounded-full font-bold bg-sky-500/10 text-sky-400 border border-sky-500/20">Simulasi ETAP</span>
+              <span class="font-mono text-[var(--text-sub)]">Distribusi 20 kV</span>
+            </div>
+            <h3 class="text-xl font-bold">Analisis Aliran Daya & Hubung Singkat Jaringan 20 kV</h3>
+            <p class="text-sm text-[var(--text-sub)] leading-relaxed">
+              Memodelkan jaringan distribusi tegangan menengah 20 kV, menghitung drop tegangan bus, arus gangguan hubung singkat (standar IEC 60909), serta koordinasi relai OCR/GFR.
+            </p>
+            <div class="space-y-1 text-xs text-slate-300 font-mono">
+              <div class="text-sky-400">✓ Newton-Raphson Load Flow</div>
+              <div class="text-sky-400">✓ Kurva Waktu-Arus (TCC Proteksi)</div>
+              <div class="text-sky-400">✓ Single-Line Diagram AutoCAD</div>
+            </div>
+          </div>
+          <div class="px-6 py-4 bg-slate-900/40 border-t border-[var(--border-color)] flex items-center justify-between text-xs">
+            <span class="font-bold text-sky-400 font-mono">Standar IEC 60909</span>
+            <span class="text-[var(--text-sub)]">Teknik Tenaga</span>
+          </div>
+        </div>
+
+        <!-- Project 6: CAD Line Layout & 3D Modeling -->
+        <div class="project-card glass-box rounded-2xl overflow-hidden hover-lift flex flex-col justify-between" data-cat="production">
+          <div class="p-6 space-y-4">
+            <div class="flex items-center justify-between text-xs">
+              <span class="px-2.5 py-0.5 rounded-full font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">CAD 2D/3D</span>
+              <span class="font-mono text-[var(--text-sub)]">AutoCAD & SolidWorks</span>
+            </div>
+            <h3 class="text-xl font-bold">Desain Tata Letak Alur Perakitan & Jig Fixture Mekanikal</h3>
+            <p class="text-sm text-[var(--text-sub)] leading-relaxed">
+              Merancang denah 2D alur stasiun kerja perakitan bebas bottleneck di AutoCAD dan memodelkan enclosure 3D serta fixture dudukan sensor di SolidWorks dengan cek toleransi.
+            </p>
+            <div class="space-y-1 text-xs text-slate-300 font-mono">
+              <div class="text-emerald-400">✓ Perakitan 3D SolidWorks</div>
+              <div class="text-emerald-400">✓ Bill of Materials (BOM)</div>
+              <div class="text-emerald-400">✓ Prinsip Ergonomi Golden Zone</div>
+            </div>
+          </div>
+          <div class="px-6 py-4 bg-slate-900/40 border-t border-[var(--border-color)] flex items-center justify-between text-xs">
+            <span class="font-bold text-emerald-400 font-mono">Desain Mekanikal</span>
+            <span class="text-[var(--text-sub)]">Production Eng</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== EXPERIENCE TIMELINE ==================== -->
+  <section id="experience" class="py-20 border-t border-[var(--border-color)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <div class="text-center max-w-2xl mx-auto space-y-3">
+        <span class="text-xs font-mono font-bold uppercase tracking-widest text-indigo-400">Rekam Jejak Karier</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Pengalaman Kerja & Kepemimpinan</h2>
+      </div>
+
+      <div class="max-w-4xl mx-auto space-y-6">
+        
+        <!-- Exp 1 -->
+        <div class="glass-box p-6 rounded-2xl hover-lift space-y-3 border-l-4 border-l-sky-500">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-xs">
+            <span class="font-mono font-bold text-sky-400">Ags 2025 – Okt 2026</span>
+            <span class="text-[var(--text-sub)] font-mono">Universitas Bengkulu</span>
+          </div>
+          <h3 class="text-lg font-bold">Koordinator Laboratorium & Lead Equipment Maintenance</h3>
+          <p class="text-sm text-[var(--text-sub)] leading-relaxed">
+            Laboratorium Instrumentasi dan Kontrol. Mengoordinasikan jadwal praktikum 100+ mahasiswa, memimpin tim asisten, memelihara 15+ meja trainer PLC/otomasi, serta memimpin proyek Kaizen pereduksian setup downtime sebesar 35% dengan rekor nol insiden keselamatan (zero-accident).
+          </p>
+        </div>
+
+        <!-- Exp 2 -->
+        <div class="glass-box p-6 rounded-2xl hover-lift space-y-3 border-l-4 border-l-amber-500">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-xs">
+            <span class="font-mono font-bold text-amber-400">Jan 2025 – Feb 2025</span>
+            <span class="text-[var(--text-sub)] font-mono">PT Manna Energy Pratama (PLTA)</span>
+          </div>
+          <h3 class="text-lg font-bold">Power Plant Operations & Maintenance Trainee</h3>
+          <p class="text-sm text-[var(--text-sub)] leading-relaxed">
+            Memantau operasi generator sinkron, sistem eksitasi, dan panel switchgear 20 kV. Menginspeksi kalibrasi sensor posisi magnetostriktif pada governor hidrolik turbin serta menerapkan prosedur keselamatan K3 dan LOTO secara disiplin.
+          </p>
+        </div>
+
+        <!-- Exp 3 -->
+        <div class="glass-box p-6 rounded-2xl hover-lift space-y-3 border-l-4 border-l-emerald-500">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-xs">
+            <span class="font-mono font-bold text-emerald-400">Jun 2024 – Des 2024</span>
+            <span class="text-[var(--text-sub)] font-mono">HIMATRO Universitas Bengkulu</span>
+          </div>
+          <h3 class="text-lg font-bold">Ketua Komunitas RETIC (Robotics & Engineering Technical Community)</h3>
+          <p class="text-sm text-[var(--text-sub)] leading-relaxed">
+            Memimpin 40+ mahasiswa teknik dalam workshop mikrokontroler, integrasi sensor industri, serta mengoordinasikan tim persiapan kompetisi robotik nasional.
+          </p>
+        </div>
+
+        <!-- Exp 4 -->
+        <div class="glass-box p-6 rounded-2xl hover-lift space-y-3 border-l-4 border-l-indigo-500">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-xs">
+            <span class="font-mono font-bold text-indigo-400">Mar 2021 – Mei 2021</span>
+            <span class="text-[var(--text-sub)] font-mono">PT Lintas Jaringan Nusantara (Jakarta)</span>
+          </div>
+          <h3 class="text-lg font-bold">Teknisi Lapangan & Perangkat Keras</h3>
+          <p class="text-sm text-[var(--text-sub)] leading-relaxed">
+            Menangani troubleshooting on-site perangkat keras router/switch, penyambungan kabel serat optik (fusion splicing), dan pengujian redaman sinyal menggunakan OTDR.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== HONORS & CERTIFICATIONS ==================== -->
+  <section id="honors" class="py-20 border-t border-[var(--border-color)] bg-slate-900/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <div class="text-center max-w-2xl mx-auto space-y-3">
+        <span class="text-xs font-mono font-bold uppercase tracking-widest text-emerald-400">Legalitas & Prestasi</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Sertifikasi Resmi & Penghargaan</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        
+        <div class="glass-box p-6 rounded-2xl space-y-4 hover-lift border-amber-500/30">
+          <div class="flex items-center gap-4">
+            <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-3xl font-bold">
+              🏆
+            </div>
+            <div>
+              <span class="text-xs font-mono text-amber-400 font-bold uppercase">Padang, Feb 2025</span>
+              <h3 class="text-lg font-bold">Juara 1 & Best Debugging Award</h3>
+            </div>
+          </div>
+          <p class="text-sm text-[var(--text-sub)] leading-relaxed">
+            Kontes Robot Industri Nasional 2025. Penghargaan tertinggi tingkat nasional atas ketepatan dan kecepatan tercepat dalam mendiagnosis dan memulihkan sel perakitan robot SCARA dari gangguan buatan.
+          </p>
+        </div>
+
+        <div class="glass-box p-6 rounded-2xl space-y-4 hover-lift border-sky-500/30">
+          <div class="flex items-center gap-4">
+            <div class="w-14 h-14 rounded-2xl bg-sky-500/10 text-sky-400 flex items-center justify-center text-3xl font-bold">
+              📜
+            </div>
+            <div>
+              <span class="text-xs font-mono text-sky-400 font-bold uppercase">Kementerian ESDM RI</span>
+              <h3 class="text-lg font-bold">Sertifikasi Pemanfaatan Tegangan Rendah</h3>
+            </div>
+          </div>
+          <p class="text-sm text-[var(--text-sub)] leading-relaxed">
+            Pelaksana Utama, Kepala Regu Pengoperasian Pemanfaatan Tenaga Listrik Tegangan Rendah. Memiliki kompetensi resmi dalam instalasi, verifikasi sistem proteksi, dan keselamatan K3 ketenagalistrikan.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== CONTACT SECTION ==================== -->
+  <section id="contact" class="py-20 border-t border-[var(--border-color)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="glass-box rounded-3xl p-8 sm:p-12 max-w-4xl mx-auto text-center space-y-8">
+        
+        <div class="space-y-3">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/10 text-sky-400 border border-sky-500/30">
+            Hubungi Sekarang
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Siap Berkontribusi untuk Keandalan Operasional Perusahaan Anda</h2>
+          <p class="text-sm sm:text-base text-[var(--text-sub)] max-w-2xl mx-auto leading-relaxed">
+            Terbuka untuk posisi full-time maupun internship di bidang <strong class="text-[var(--text-main)]">Production Engineering, Electrical, Automation & Maintenance</strong>. Siap direlokasi ke Cikarang, Kendal, Sidoarjo, Batam, atau site nasional.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto text-left">
+          
+          <a href="https://wa.me/62895609817832" target="_blank" class="glass-box p-4 rounded-xl hover:border-emerald-500/50 transition-colors group">
+            <div class="text-xs font-mono text-[var(--text-sub)]">WhatsApp / Telepon</div>
+            <div class="font-bold text-sm text-[var(--text-main)] group-hover:text-emerald-400 mt-1 flex items-center gap-1">
+              <span>+62 895 6098 17832</span>
+            </div>
+          </a>
+
+          <a href="mailto:teguprasetio314@gmail.com" class="glass-box p-4 rounded-xl hover:border-sky-500/50 transition-colors group">
+            <div class="text-xs font-mono text-[var(--text-sub)]">Email Resmi</div>
+            <div class="font-bold text-sm text-[var(--text-main)] group-hover:text-sky-400 mt-1 truncate">
+              <span>teguprasetio314@gmail.com</span>
+            </div>
+          </a>
+
+          <a href="https://www.linkedin.com/in/teguh-prasetio14" target="_blank" class="glass-box p-4 rounded-xl hover:border-indigo-500/50 transition-colors group">
+            <div class="text-xs font-mono text-[var(--text-sub)]">LinkedIn Profile</div>
+            <div class="font-bold text-sm text-[var(--text-main)] group-hover:text-indigo-400 mt-1 truncate">
+              <span>in/teguh-prasetio14</span>
+            </div>
+          </a>
+
+        </div>
+
+        <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
+          <a href="mailto:teguprasetio314@gmail.com" class="px-8 py-3.5 rounded-xl bg-gradient-to-r from-sky-600 to-emerald-600 hover:from-sky-500 hover:to-emerald-500 text-white font-bold text-sm shadow-xl transition-all">
+            Kirim Penawaran / Email
+          </a>
+          <button onclick="window.print()" class="px-6 py-3.5 rounded-xl glass-box hover:border-[var(--text-sub)] text-[var(--text-main)] text-sm font-semibold transition-all flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+            Simpan Portofolio (PDF)
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="py-8 border-t border-[var(--border-color)] text-center text-xs text-[var(--text-sub)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>© 2026 Teguh Prasetio, S.T. Portofolio Teknik.</p>
+      <a href="#hero" class="hover:text-sky-400 transition-colors font-medium">Kembali ke Atas ↑</a>
+    </div>
+  </footer>
+
+  <!-- ==================== INTERACTIVE SCRIPTS ==================== -->
+  <script>
+    // Theme Toggle Logic
+    const themeBtn = document.getElementById('theme-btn');
+    const sunIcon = document.getElementById('sun-icon');
+    const moonIcon = document.getElementById('moon-icon');
+
+    const savedTheme = localStorage.getItem('site-theme') || 'dark';
+    if (savedTheme === 'light') {
+      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.add('light');
+      sunIcon.classList.add('hidden');
+      moonIcon.classList.remove('hidden');
+    }
+
+    themeBtn.addEventListener('click', () => {
+      const isCurrentlyDark = document.documentElement.classList.contains('dark');
+      if (isCurrentlyDark) {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+        localStorage.setItem('site-theme', 'light');
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+      } else {
+        document.documentElement.classList.remove('light');
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('site-theme', 'dark');
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+      }
+    });
+
+    // Mobile Menu Toggle
+    const mobileBtn = document.getElementById('mobile-btn');
+    const mobileNav = document.getElementById('mobile-nav');
+
+    mobileBtn.addEventListener('click', () => {
+      mobileNav.classList.toggle('hidden');
+    });
+
+    document.querySelectorAll('#mobile-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNav.classList.add('hidden');
+      });
+    });
+
+    // Project Filtering Logic
+    function setFilter(category, buttonEl) {
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+      buttonEl.classList.add('active');
+
+      const cards = document.querySelectorAll('.project-card');
+      cards.forEach(card => {
+        const itemCategory = card.getAttribute('data-cat');
+        if (category === 'all' || itemCategory === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
